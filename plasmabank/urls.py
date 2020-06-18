@@ -30,4 +30,6 @@ urlpatterns = [
     path('password_reset/done/', views.PasswordResetDone.as_view(),name ='password_reset_done'),
     path('password_reset/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(),name ='password_reset_confirm'),
     path('password_reset/complete/', views.PasswordResetComplete.as_view(),name ='password_reset_complete'),
+    path('story',views.Story, name='story'),
+    path('storyadd', views.storyadd, name='sorryadd'),
 ]

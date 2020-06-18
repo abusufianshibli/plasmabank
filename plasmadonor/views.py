@@ -56,7 +56,7 @@ def register (request):
 
             elif User.objects.filter(email=email).exists():
                 messages.info(request,'Email Already Exists')
-                return redirect('register')    
+                return redirect('register')   
             else:
                 user = User.objects.create_user(
                     username=username,
@@ -66,6 +66,7 @@ def register (request):
                 user.is_active=False
             
                 user.save()
+                
                 current_site = get_current_site(request)
                 mail_subject = 'Activate your account.'
                 message = render_to_string('acc_active_email.html', {
@@ -81,6 +82,7 @@ def register (request):
                 [email],
                 )
                 email_msg.send()
+                messages.info(request,' Activation Email sent info your mail ')
                 
 
             return redirect('singin')
@@ -154,3 +156,9 @@ class PasswordResetConfirm(PasswordResetConfirmView):
 
 class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'password_reset_complete.html'
+
+def Story(request):
+    return render(request,'story.html')
+
+def storyadd(request):
+    return render(request,'storyadd.html')
